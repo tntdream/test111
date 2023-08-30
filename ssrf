@@ -5,7 +5,9 @@
 2. 漏洞详情
 2.1 漏洞发现
 在访问产品并点击"Check stock"后，我们拦截了一个请求，并在Burp Suite中发送到了Burp Repeater。
+![漏洞证明](https://github.com/tntdream/test111/blob/main/Weixin%20Image_20230830155354.png?raw=true)
 修改stockApi参数中的URL为http://127.0.0.1/，观察到应用程序正在解析URL，提取主机名，并对其进行白名单验证。
+
 修改URL为http://username@stock.weliketoshop.net/，观察到此URL被接受，这表明URL解析器支持嵌入的凭证。
 2.2 漏洞利用
 在用户名后附加一个#，观察到URL现在被拒绝。
