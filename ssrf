@@ -1,0 +1,13 @@
+基于白名单的输入过滤的SSRF漏洞
+1. 概述
+在测试过程中，我们发现了一个SSRF(Server-Side Request Forgery)漏洞，这使得攻击者可以从服务器端发起请求。尽管应用程序有一个基于白名单的输入过滤器，但我们发现了绕过该过滤器的方法。
+
+2. 漏洞详情
+2.1 漏洞发现
+在访问产品并点击"Check stock"后，我们拦截了一个请求，并在Burp Suite中发送到了Burp Repeater。
+修改stockApi参数中的URL为http://127.0.0.1/，观察到应用程序正在解析URL，提取主机名，并对其进行白名单验证。
+修改URL为http://username@stock.weliketoshop.net/，观察到此URL被接受，这表明URL解析器支持嵌入的凭证。
+2.2 漏洞利用
+在用户名后附加一个#，观察到URL现在被拒绝。
+将#进行双URL编码，即%2523，观察到"Internal Server Error"的响应，这表明服务器可能试图连接到"username"。
+为了访问管理员界面并删除目标用户，我们修改URL为：http://localhost:80%2523@stock.weliketoshop.net/admin/delete
