@@ -18,4 +18,8 @@
 
 我们开发了一个简单的Java程序，该程序可以实例化带有任意ID的`ProductTemplate`，然后序列化它，并进行Base64编码。通过这种方式，我们成功地将id设置为一个单引号，从而引发了SQL错误，这表明该网站存在Postgres基础的SQL注入漏洞。
 
+![漏洞证明](https://github.com/tntdream/test111/blob/main/7711693501139_.pic.jpg)
+![漏洞证明](https://github.com/tntdream/test111/blob/main/7701693499601_.pic.jpg)
+![漏洞证明](https://github.com/tntdream/test111/blob/main/7721693501535_.pic.jpg)
+![漏洞证明](https://github.com/tntdream/test111/blob/main/7731693501651_.pic.jpg)
 
